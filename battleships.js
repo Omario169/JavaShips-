@@ -11,21 +11,14 @@ let model = {
 		{ locations: [0, 0, 0], hits: ["", "", ""] }
 	],
 
-// original hard-coded values for ship locations
-/*
-	ships: [
-		{ locations: ["06", "16", "26"], hits: ["", "", ""] },
-		{ locations: ["24", "34", "44"], hits: ["", "", ""] },
-		{ locations: ["10", "11", "12"], hits: ["", "", ""] }
-	],
-*/
+
 
 	fire: function(guess) {
 		for (let i = 0; i < this.numShips; i++) {
 			let ship = this.ships[i];
 			let index = ship.locations.indexOf(guess);
 
-			// here's an improvement! Check to see if the ship
+			// Check to see if the ship
 			// has already been hit, message the user, and return true.
 			if (ship.hits[index] === "hit") {
 				view.displayMessage("Oops, you already hit that location!");
@@ -72,10 +65,10 @@ let model = {
 		let direction = Math.floor(Math.random() * 2);
 		let row, col;
 
-		if (direction === 1) { // horizontal
+		if (direction === 1) {
 			row = Math.floor(Math.random() * this.boardSize);
 			col = Math.floor(Math.random() * (this.boardSize - this.shipLength + 1));
-		} else { // vertical
+		} else { // 
 			row = Math.floor(Math.random() * (this.boardSize - this.shipLength + 1));
 			col = Math.floor(Math.random() * this.boardSize);
 		}
@@ -179,7 +172,7 @@ function handleFireButton() {
 function handleKeyPress(e) {
 	let fireButton = document.getElementById("fireButton");
 
-	// in IE9 and earlier, the event object doesn't get passed
+	// For IE9 and earlier, the event object doesn't get passed
 	// to the event handler correctly, so we use window.event instead.
 	e = e || window.event;
 
@@ -190,7 +183,7 @@ function handleKeyPress(e) {
 }
 
 
-// init - called when the page has completed loading
+// init - This is called when the page has completed loading
 
 window.onload = init;
 
