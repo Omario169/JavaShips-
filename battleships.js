@@ -21,7 +21,7 @@ let model = {
 			// Check to see if the ship
 			// has already been hit, message the user, and return true.
 			if (ship.hits[index] === "hit") {
-				view.displayMessage("Oops, you already hit that location!");
+				view.displayMessage("Darn, you already hit that location!");
 				return true;
 			} else if (index >= 0) {
 				ship.hits[index] = "hit";
