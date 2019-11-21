@@ -54,3 +54,48 @@ let model = {
 
                                                                 
 };
+
+let controller = {
+    guesses: 0,
+
+    processGuess: function (guess) {
+        let location = parseGuess(guess);
+        if (location) {
+            this.guesses++
+            let hit = model.fire(location);
+            if (hit && model.shipsSunk === model.numShips) {
+                view.displayMessage("You sank all my battleships, in " +
+                                                this.guesses + " guesses");
+            }
+        }
+        }
+    };
+
+    function parseGuess (guess) {
+        let alphabet = ["A", "B", "C", "D", "E", "F", "G"];
+        if (guess === null || guess.length !== 2) {
+            alert ("This is not a valid value. Please enter a letter and a number onto the board! :)");
+        } else {
+            let firstChar = guess.charAt(0);
+            let row = alphabet.indexOf(firstChar);
+            let column = guess.charAt(1);
+
+            if (isNaN(row) || isNaN(column)) {
+                alert("This value is not on the board! >:(");
+            } else if (row < 0 || row >= model.boardSize ||
+                                column < 0 || column >= model.boardSize) {
+                                    alert("This value is off the board!");
+                     } else {
+                         return row + column;
+                     }
+            
+        }
+        return null;
+    }
+
+
+console.log(parseGuess("A0"));
+console.log(parseGuess("B6"));
+console.log(parseGuess("G3"));
+console.log(parseGuess("H0"));
+console.log(parseGuess("A7"));
